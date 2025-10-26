@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mynote</title> <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="ph ph-list"></i>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Projects</h3>
+                <button class="close-sidebar" id="close-sidebar">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <ul id="project-list" class="project-list">
+                </ul>
+            <button id="add-project-btn" class="sidebar-btn btn-add-project">
+                <i class="ph ph-plus-circle"></i> Project Baru
+            </button>
+        </div>
+
+        <div class="sidebar-footer">
+            <button id="export-btn" class="sidebar-btn">
+                <i class="ph ph-download-simple"></i> Export Data (JSON)
+            </button>
+            <button class="sidebar-btn">
+                <i class="ph ph-upload-simple"></i> Import Data (JSON)
+                <input type="file" id="import-file" accept=".json" class="hidden-file-input">
+            </button>
+        </div>
+    </aside>
+
+    <header class="main-header">
+        <h1 id="project-title">Catatan Kanban (Simple)</h1>
+    </header>
+
+    <main class="kanban-board" id="kanban-board">
+        <button class="add-column-btn" id="add-column-btn">+ Tambah Kolom Baru</button>
+    </main>
+
+    <button class="fab" id="fab">
+        <i class="ph ph-plus"></i>
+    </button>
+
+    <div class="modal-overlay" id="card-modal">
+        <div class="modal-content">
+            <h3 id="modal-title">Buat Kartu Baru</h3>
+            <form id="card-form">
+                <input type="hidden" id="card-id-input">
+                <input type="hidden" id="column-id-input">
+
+                <div class="form-group">
+                    <label for="card-title">Judul</label>
+                    <input type="text" id="card-title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="card-desc">Deskripsi</label>
+                    <textarea id="card-desc" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="card-tags">Tags (pisahkan dengan koma)</label>
+                    <input type="text" id="card-tags">
+                </div>
+
+                <div class="form-group">
+                    <label>Warna Kartu</label>
+                    <div class="color-palette" id="color-palette">
+                        <span class="color-option default" data-color="default" title="Default (Putih)"></span>
+                        <span class="color-option pastel-blue" data-color="pastel-blue" title="Biru"></span>
+                        <span class="color-option pastel-mint" data-color="pastel-mint" title="Mint"></span>
+                        <span class="color-option pastel-lavender" data-color="pastel-lavender" title="Lavender"></span>
+                        <span class="color-option pastel-peach" data-color="pastel-peach" title="Peach"></span>
+                        <span class="color-option pastel-sand" data-color="pastel-sand" title="Sand"></span>
+                    </div>
+                    <input type="hidden" id="card-color-input" value="default">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-delete" id="delete-card-btn">
+                        <i class="ph ph-trash"></i> Hapus
+                    </button>
+                    <div class="modal-actions-right">
+                        <button type="button" class="btn-secondary" id="cancel-btn">Batal</button>
+                        <button type="submit" class="btn-primary" id="save-btn">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="confirm-modal">
+        <div class="modal-content confirm-dialog">
+            <h4>Konfirmasi</h4>
+            <p id="confirm-text">Apakah Anda yakin?</p>
+            <div class="modal-actions-right">
+                <button type="button" class="btn-secondary" id="confirm-cancel-btn">Batal</button>
+                <button type="button" class="btn-primary btn-danger" id="confirm-ok-btn">Hapus</Cbutton>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* === TEMA BARU "CUTE & WARM" === */
+:root {
+    /* Palet Warna Hangat Baru */
+    --color-bg: #fffaf0; /* Latar belakang utama (Krem/Sea Shell) */
+    --color-header: #ffffff;
+    --color-column-bg: #fdf5e6; /* Latar belakang kolom (Beige/Old Lace) */
+    --color-card-bg: #ffffff;   /* Latar belakang kartu default (Putih) */
+    
+    --color-text-primary: #5d503c; /* Teks (Coklat Tua) */
+    --color-text-secondary: #8a7d6c; /* Teks sekunder (Coklat Abu-abu) */
+    
+    --color-accent: #ff8c69; /* Aksen (Salmon / Terracotta lembut) */
+    --color-danger: #e57373; /* Merah yang lebih lembut */
+    --color-shadow: rgba(80, 50, 20, 0.07); /* Bayangan hangat */
+
+    /* Palet Warna Kartu (Disesuaikan) */
+    --pastel-blue: #e0f2fe; /* Biru langit lembut */
+    --pastel-mint: #dcfce7; /* Mint lembut */
+    --pastel-lavender: #f3e8ff; /* Lavender lembut */
+    --pastel-peach: #ffeedd; /* Peach lembut */
+    --pastel-sand: #fef9c3; /* Kuning lembut */
+}
+/* === AKHIR TEMA BARU === */
+
+
+/* Reset dan Pengaturan Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg); /* TEMA BARU */
+    color: var(--color-text-primary); /* TEMA BARU */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header */
+.main-header {
+    background-color: var(--color-header); /* Putih */
+    color: var(--color-text-primary); /* Teks Coklat Tua */
+    padding: 1rem 2rem;
+    text-align: center;
+    box-shadow: 0 2px 4px var(--color-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Sidebar Toggle */
+.sidebar-toggle {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--color-text-secondary); /* TEMA BARU */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    background-color: var(--color-header);
+    box-shadow: 2px 0 10px var(--color-shadow);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-column-bg);
+}
+
+.close-sidebar {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    line-height: 0;
+}
+
+/* Navigasi Project di Sidebar */
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 0 0 1.5rem 0;
+}
+
+.project-list {
+    list-style: none;
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.project-list-item {
+    padding: 0;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-list-item .project-name {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-list-item .edit-project-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 1rem;
+    line-height: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+}
+
+.project-list-item:hover .edit-project-btn,
+.project-list-item.active .edit-project-btn {
+    opacity: 1;
+}
+
+.project-list-item .edit-project-btn:hover {
+    color: var(--color-accent);
+}
+
+/* Item Aktif (Gunakan Warna Aksen Baru) */
+.project-list-item.active {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.project-list-item.active .project-name {
+    color: white;
+}
+
+.project-list-item.active .edit-project-btn {
+    color: white;
+}
+
+.project-list-item.active .edit-project-btn:hover {
+    color: var(--color-bg);
+}
+
+
+.btn-add-project {
+    width: calc(100% - 3rem);
+    margin: 1rem 1.5rem 0 1.5rem;
+    justify-content: center;
+}
+
+/* Footer Sidebar (Import/Export) */
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--color-column-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    background-color: var(--color-bg); /* TEMA BARU */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: left;
+    transition: background-color 0.2s;
+    position: relative;
+    color: var(--color-text-primary); /* TEMA BARU */
+}
+
+.sidebar-btn:hover {
+    background-color: var(--color-column-bg); /* TEMA BARU */
+}
+
+.sidebar-btn i {
+    font-size: 1.2rem;
+}
+
+.hidden-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* Papan Kanban */
+.kanban-board {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    overflow-x: auto;
+    min-height: calc(100vh - 70px);
+    align-items: flex-start;
+}
+
+/* Kolom Kanban */
+.kanban-column {
+    flex: 0 0 320px;
+    background-color: var(--color-column-bg); /* TEMA BARU */
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+.column-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: text;
+    border-radius: 6px;
+    color: var(--color-text-primary); /* TEMA BARU */
+}
+
+.column-title:focus {
+    outline: 2px solid var(--color-accent);
+    background-color: var(--color-card-bg);
+}
+
+.card-list {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.add-card-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    background: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+    font-size: 1rem;
+}
+
+.add-card-btn:hover {
+    background-color: rgba(0, 0, 0, 0.03); /* Sedikit lebih gelap */
+}
+
+/* Tombol Tambah Kolom */
+.add-column-btn {
+    flex: 0 0 320px;
+    padding: 1.5rem;
+    background-color: transparent; /* TEMA BARU */
+    border: 2px dashed var(--color-text-secondary); /* TEMA BARU */
+    color: var(--color-text-secondary); /* TEMA BARU */
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    height: fit-content;
+}
+
+.add-column-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* TEMA BARU */
+}
+
+/* Kartu (Card) - Warna Penuh */
+.kanban-card {
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px var(--color-shadow);
+    cursor: grab;
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+/* Palet Pastel Baru */
+.kanban-card[data-color="default"] { background-color: var(--color-card-bg); }
+.kanban-card[data-color="pastel-blue"] { background-color: var(--pastel-blue); }
+.kanban-card[data-color="pastel-mint"] { background-color: var(--pastel-mint); }
+.kanban-card[data-color="pastel-lavender"] { background-color: var(--pastel-lavender); }
+.kanban-card[data-color="pastel-peach"] { background-color: var(--pastel-peach); }
+.kanban-card[data-color="pastel-sand"] { background-color: var(--pastel-sand); }
+
+
+.kanban-card:hover {
+    box-shadow: 0 4px 8px rgba(80, 50, 20, 0.1);
+}
+
+.kanban-card.dragging {
+    opacity: 0.5;
+    box-shadow: 0 0 10px var(--color-accent);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.pin-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+}
+
+.kanban-card.pinned {
+    order: -1;
+}
+
+.kanban-card.pinned .pin-btn {
+    color: var(--color-accent);
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.75rem;
+    word-break: break-word;
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.card-tag {
+    background-color: rgba(255, 255, 255, 0.7); /* TEMA BARU */
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+}
+
+.card-date {
+    font-size: 0.75rem;
+    color: #a09383; /* TEMA BARU */
+}
+
+/* Floating Action Button (FAB) */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-accent); /* TEMA BARU */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(255, 140, 105, 0.5); /* Bayangan Aksen Baru */
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 900;
+}
+
+.fab:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(255, 140, 105, 0.6); /* Bayangan Aksen Baru */
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--color-header);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s;
+}
+
+.modal-overlay.open .modal-content {
+    transform: scale(1);
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Palet Warna di Modal (TEMA BARU) */
+.color-palette {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.color-option.selected {
+    border-color: var(--color-accent);
+}
+
+.color-option.default { background-color: var(--color-card-bg); border: 2px solid #eee;}
+.color-option.pastel-blue { background-color: var(--pastel-blue); }
+.color-option.pastel-mint { background-color: var(--pastel-mint); }
+.color-option.pastel-lavender { background-color: var(--pastel-lavender); }
+.color-option.pastel-peach { background-color: var(--pastel-peach); }
+.color-option.pastel-sand { background-color: var(--pastel-sand); }
+
+
+/* Tombol Modal (TEMA BARU) */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.modal-actions-right {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-primary, .btn-secondary, .btn-delete {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: white;
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.btn-secondary {
+    background-color: var(--color-column-bg);
+    color: var(--color-text-secondary);
+}
+.btn-secondary:hover { background-color: #f5eeda; } /* Sedikit lebih gelap dari kolom */
+
+.btn-delete {
+    background: none;
+    color: var(--color-danger);
+    padding: 0.75rem 0;
+}
+.btn-delete:hover { opacity: 0.8; }
+.btn-delete i { vertical-align: middle; margin-right: 0.25rem; }
+
+/* Modal Konfirmasi */
+.confirm-dialog {
+    max-width: 400px;
+}
+.btn-danger {
+    background-color: var(--color-danger);
+    color: white;
+}
+
+/* Media Query untuk Mobile */
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        top: 10px;
+        left: 15px;
+        color: var(--color-text-secondary); /* TEMA BARU */
+    }
+    
+    .kanban-board {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .kanban-column,
+    .add-column-btn {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .fab {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
