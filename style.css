@@ -1,7 +1,7 @@
 /* Import Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-/* === TEMA BARU "CUTE & WARM" === */
+/* === TEMA "CUTE & WARM" === */
 :root {
     /* Palet Warna Hangat Baru */
     --color-bg: #fffaf0; /* Latar belakang utama (Krem/Sea Shell) */
@@ -23,7 +23,7 @@
     --pastel-peach: #ffeedd; /* Peach lembut */
     --pastel-sand: #fef9c3; /* Kuning lembut */
 }
-/* === AKHIR TEMA BARU === */
+/* === AKHIR TEMA === */
 
 
 /* Reset dan Pengaturan Global */
@@ -35,16 +35,16 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--color-bg); /* TEMA BARU */
-    color: var(--color-text-primary); /* TEMA BARU */
+    background-color: var(--color-bg); 
+    color: var(--color-text-primary); 
     line-height: 1.6;
     overflow-x: hidden;
 }
 
 /* Header */
 .main-header {
-    background-color: var(--color-header); /* Putih */
-    color: var(--color-text-primary); /* Teks Coklat Tua */
+    background-color: var(--color-header); 
+    color: var(--color-text-primary); 
     padding: 1rem 2rem;
     text-align: center;
     box-shadow: 0 2px 4px var(--color-shadow);
@@ -63,7 +63,7 @@ body {
     border: none;
     font-size: 1.8rem;
     cursor: pointer;
-    color: var(--color-text-secondary); /* TEMA BARU */
+    color: var(--color-text-secondary); 
 }
 
 .sidebar {
@@ -160,7 +160,6 @@ body {
     color: var(--color-accent);
 }
 
-/* Item Aktif (Gunakan Warna Aksen Baru) */
 .project-list-item.active {
     background-color: var(--color-accent);
     color: white;
@@ -200,18 +199,18 @@ body {
     gap: 0.5rem;
     padding: 0.75rem 1rem;
     border: none;
-    background-color: var(--color-bg); /* TEMA BARU */
+    background-color: var(--color-bg); 
     border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
     text-align: left;
     transition: background-color 0.2s;
     position: relative;
-    color: var(--color-text-primary); /* TEMA BARU */
+    color: var(--color-text-primary); 
 }
 
 .sidebar-btn:hover {
-    background-color: var(--color-column-bg); /* TEMA BARU */
+    background-color: var(--color-column-bg); 
 }
 
 .sidebar-btn i {
@@ -242,7 +241,7 @@ body {
 /* Kolom Kanban */
 .kanban-column {
     flex: 0 0 320px;
-    background-color: var(--color-column-bg); /* TEMA BARU */
+    background-color: var(--color-column-bg); 
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 2px 4px var(--color-shadow);
@@ -255,7 +254,7 @@ body {
     margin-bottom: 1rem;
     cursor: text;
     border-radius: 6px;
-    color: var(--color-text-primary); /* TEMA BARU */
+    color: var(--color-text-primary); 
 }
 
 .column-title:focus {
@@ -284,16 +283,16 @@ body {
 }
 
 .add-card-btn:hover {
-    background-color: rgba(0, 0, 0, 0.03); /* Sedikit lebih gelap */
+    background-color: rgba(0, 0, 0, 0.03); 
 }
 
 /* Tombol Tambah Kolom */
 .add-column-btn {
     flex: 0 0 320px;
     padding: 1.5rem;
-    background-color: transparent; /* TEMA BARU */
-    border: 2px dashed var(--color-text-secondary); /* TEMA BARU */
-    color: var(--color-text-secondary); /* TEMA BARU */
+    background-color: transparent; 
+    border: 2px dashed var(--color-text-secondary); 
+    color: var(--color-text-secondary); 
     border-radius: 12px;
     cursor: pointer;
     font-size: 1.1rem;
@@ -303,7 +302,7 @@ body {
 }
 
 .add-column-btn:hover {
-    background-color: rgba(255, 255, 255, 0.5); /* TEMA BARU */
+    background-color: rgba(255, 255, 255, 0.5); 
 }
 
 /* Kartu (Card) - Warna Penuh */
@@ -315,15 +314,6 @@ body {
     transition: box-shadow 0.2s, background-color 0.2s;
 }
 
-/* Palet Pastel Baru */
-.kanban-card[data-color="default"] { background-color: var(--color-card-bg); }
-.kanban-card[data-color="pastel-blue"] { background-color: var(--pastel-blue); }
-.kanban-card[data-color="pastel-mint"] { background-color: var(--pastel-mint); }
-.kanban-card[data-color="pastel-lavender"] { background-color: var(--pastel-lavender); }
-.kanban-card[data-color="pastel-peach"] { background-color: var(--pastel-peach); }
-.kanban-card[data-color="pastel-sand"] { background-color: var(--pastel-sand); }
-
-
 .kanban-card:hover {
     box-shadow: 0 4px 8px rgba(80, 50, 20, 0.1);
 }
@@ -332,6 +322,41 @@ body {
     opacity: 0.5;
     box-shadow: 0 0 10px var(--color-accent);
 }
+
+/* === PERUBAHAN DI SINI === */
+/* Style ini sekarang berlaku untuk Kartu DAN Modal Content */
+
+.kanban-card[data-color="default"],
+.modal-content[data-color="default"] { 
+    background-color: var(--color-card-bg); 
+}
+
+.kanban-card[data-color="pastel-blue"],
+.modal-content[data-color="pastel-blue"] { 
+    background-color: var(--pastel-blue); 
+}
+
+.kanban-card[data-color="pastel-mint"],
+.modal-content[data-color="pastel-mint"] { 
+    background-color: var(--pastel-mint); 
+}
+
+.kanban-card[data-color="pastel-lavender"],
+.modal-content[data-color="pastel-lavender"] { 
+    background-color: var(--pastel-lavender); 
+}
+
+.kanban-card[data-color="pastel-peach"],
+.modal-content[data-color="pastel-peach"] { 
+    background-color: var(--pastel-peach); 
+}
+
+.kanban-card[data-color="pastel-sand"],
+.modal-content[data-color="pastel-sand"] { 
+    background-color: var(--pastel-sand); 
+}
+/* === AKHIR PERUBAHAN === */
+
 
 .card-header {
     display: flex;
@@ -381,7 +406,7 @@ body {
 }
 
 .card-tag {
-    background-color: rgba(255, 255, 255, 0.7); /* TEMA BARU */
+    background-color: rgba(255, 255, 255, 0.7); 
     color: var(--color-text-secondary);
     font-size: 0.75rem;
     padding: 0.2rem 0.5rem;
@@ -390,7 +415,7 @@ body {
 
 .card-date {
     font-size: 0.75rem;
-    color: #a09383; /* TEMA BARU */
+    color: #a09383; 
 }
 
 /* Floating Action Button (FAB) */
@@ -400,7 +425,7 @@ body {
     right: 2rem;
     width: 60px;
     height: 60px;
-    background-color: var(--color-accent); /* TEMA BARU */
+    background-color: var(--color-accent); 
     color: white;
     border: none;
     border-radius: 50%;
@@ -408,7 +433,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(255, 140, 105, 0.5); /* Bayangan Aksen Baru */
+    box-shadow: 0 4px 12px rgba(255, 140, 105, 0.5); 
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     z-index: 900;
@@ -416,7 +441,7 @@ body {
 
 .fab:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(255, 140, 105, 0.6); /* Bayangan Aksen Baru */
+    box-shadow: 0 6px 16px rgba(255, 140, 105, 0.6); 
 }
 
 /* Modal */
@@ -449,7 +474,8 @@ body {
     max-width: 500px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     transform: scale(0.95);
-    transition: transform 0.3s;
+    /* Transisi untuk perpindahan warna */
+    transition: transform 0.3s, background-color 0.2s; 
 }
 
 .modal-overlay.open .modal-content {
@@ -480,7 +506,7 @@ body {
     resize: vertical;
 }
 
-/* Palet Warna di Modal (TEMA BARU) */
+/* Palet Warna di Modal */
 .color-palette {
     display: flex;
     gap: 0.75rem;
@@ -507,7 +533,7 @@ body {
 .color-option.pastel-sand { background-color: var(--pastel-sand); }
 
 
-/* Tombol Modal (TEMA BARU) */
+/* Tombol Modal */
 .modal-actions {
     display: flex;
     justify-content: space-between;
@@ -540,7 +566,7 @@ body {
     background-color: var(--color-column-bg);
     color: var(--color-text-secondary);
 }
-.btn-secondary:hover { background-color: #f5eeda; } /* Sedikit lebih gelap dari kolom */
+.btn-secondary:hover { background-color: #f5eeda; } 
 
 .btn-delete {
     background: none;
@@ -564,7 +590,7 @@ body {
     .sidebar-toggle {
         top: 10px;
         left: 15px;
-        color: var(--color-text-secondary); /* TEMA BARU */
+        color: var(--color-text-secondary); 
     }
     
     .kanban-board {

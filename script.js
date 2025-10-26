@@ -83,11 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
         projectTitle.textContent = project ? project.name : 'mynote'; // Judul default
     }
 
-    /**
-     * Merender daftar project di sidebar (DIPERBARUI)
-     */
     function renderSidebarNav() {
-        projectList.innerHTML = ''; // Kosongkan list
+        projectList.innerHTML = ''; 
         state.projects.forEach(project => {
             const li = document.createElement('li');
             li.className = 'project-list-item';
@@ -96,19 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.classList.add('active');
             }
 
-            // Buat span untuk nama project (bisa diklik untuk switch)
             const nameSpan = document.createElement('span');
             nameSpan.className = 'project-name';
             nameSpan.textContent = project.name;
             nameSpan.addEventListener('click', () => switchProject(project.id));
             
-            // Buat tombol edit
             const editBtn = document.createElement('button');
             editBtn.className = 'edit-project-btn';
             editBtn.innerHTML = '<i class="ph ph-pencil-simple"></i>';
             editBtn.title = 'Edit nama project';
             editBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Hentikan event agar tidak switch project
+                e.stopPropagation(); 
                 editProjectName(project.id);
             });
 
@@ -213,9 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.remove('open'); 
     }
 
-    /**
-     * Fungsi baru untuk edit nama project
-     */
     function editProjectName(projectId) {
         const project = state.projects.find(p => p.id === projectId);
         if (!project) return;
@@ -225,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newName && newName.trim() !== '' && newName !== project.name) {
             project.name = newName.trim();
             saveData();
-            renderApp(); // Render ulang sidebar dan header
+            renderApp(); 
         }
     }
 
@@ -262,11 +254,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === MANAJEMEN KARTU (MODAL) ===
 
+    /**
+     * Membuka modal (DIPERBARUI)
+     */
     function openCardModal(mode = 'new', columnId = null, cardId = null) {
         const project = getCurrentProject();
         if (!project) return; 
 
         cardForm.reset();
+        
+        // === PERUBAHAN DI SINI ===
+        // Dapatkan elemen modal content
+        const modalContentEl = cardModal.querySelector('.modal-content');
+        // === AKHIR PERUBAHAN ===
+
+        // Reset pilihan warna
         document.querySelectorAll('.color-option.selected').forEach(el => el.classList.remove('selected'));
         colorPalette.querySelector('.color-option[data-color="default"]').classList.add('selected');
 
@@ -286,11 +288,21 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('card-color-input').value = color;
             colorPalette.querySelector(`.color-option[data-color="${color}"]`).classList.add('selected');
 
+            // === PERUBAHAN DI SINI ===
+            // Atur warna modal sesuai warna kartu yang diedit
+            modalContentEl.dataset.color = color; 
+            // === AKHIR PERUBAHAN ===
+
         } else { // mode 'new'
             modalTitle.textContent = 'Buat Kartu Baru';
             deleteCardBtn.style.display = 'none';
             document.getElementById('column-id-input').value = columnId || project.columns[0]?.id;
             document.getElementById('card-id-input').value = '';
+
+            // === PERUBAHAN DI SINI ===
+            // Atur warna modal ke default (putih)
+            modalContentEl.dataset.color = 'default'; 
+            // === AKHIR PERUBAHAN ===
         }
         cardModal.classList.add('open');
     }
@@ -455,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = URL.createObjectURL(dataBlob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `mynote-backup-${new Date().toISOString().split('T')[0]}.json`; // Ganti nama file
+        a.download = `mynote-backup-${new Date().toISOString().split('T')[0]}.json`; 
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -486,7 +498,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             e.target.value = null; 
         };
-        reader.readAsText(file);
+        reader.readText(file);
     }
 
 
@@ -574,13 +586,27 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelBtn.addEventListener('click', closeCardModal);
     deleteCardBtn.addEventListener('click', deleteCard);
     
+    // === PERUBAHAN DI SINI ===
+    // Event listener untuk palet warna
     colorPalette.addEventListener('click', (e) => {
         if (e.target.classList.contains('color-option')) {
+            // Hapus 'selected' dari semua
             colorPalette.querySelectorAll('.color-option').forEach(el => el.classList.remove('selected'));
+            // Tambah 'selected' ke yang diklik
             e.target.classList.add('selected');
-            document.getElementById('card-color-input').value = e.target.dataset.color;
+            
+            // Dapatkan warna yang dipilih
+            const selectedColor = e.target.dataset.color;
+            
+            // Update input tersembunyi
+            document.getElementById('card-color-input').value = selectedColor;
+
+            // Update warna background modal content secara real-time
+            const modalContent = cardModal.querySelector('.modal-content');
+            modalContent.dataset.color = selectedColor;
         }
     });
+    // === AKHIR PERUBAHAN ===
 
     // Modal Konfirmasi
     confirmOkBtn.addEventListener('click', handleConfirmDelete);
